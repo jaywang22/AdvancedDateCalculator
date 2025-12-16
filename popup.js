@@ -1121,3 +1121,58 @@ function showResultTooltipOnce() {
   setTimeout(() => resultTooltip.classList.remove("show"), 1000);
 }
 document.getElementById("resultCalendarContainer").addEventListener("mouseenter", showResultTooltipOnce);
+
+// --- Swipe Gestures for Mobile ---
+let touchStartX = 0;
+let touchEndX = 0;
+let touchStartY = 0;
+let touchEndY = 0;
+
+function handleSwipe(container, prevBtn, nextBtn) {
+  const minSwipeDistance = 50;
+  const swipeDistanceX = touchEndX - touchStartX;
+  const swipeDistanceY = touchEndY - touchStartY;
+  
+  // Only trigger if horizontal swipe is dominant
+  if (Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY) && Math.abs(swipeDistanceX) > minSwipeDistance) {
+    if (swipeDistanceX > 0) {
+      // Swipe right - go to previous month
+      prevBtn.click();
+    } else {
+      // Swipe left - go to next month
+      nextBtn.click();
+    }
+  }
+}
+
+// Starting calendar swipe
+document.getElementById('calendarDays').addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+document.getElementById('calendarDays').addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  touchEndY = e.changedTouches[0].screenY;
+  handleSwipe(
+    document.getElementById('calendarDays'),
+    document.getElementById('prevMonth'),
+    document.getElementById('nextMonth')
+  );
+}, { passive: true });
+
+// Result calendar swipe
+document.getElementById('resultCalendarDays').addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+document.getElementById('resultCalendarDays').addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  touchEndY = e.changedTouches[0].screenY;
+  handleSwipe(
+    document.getElementById('resultCalendarDays'),
+    document.getElementById('prevResultMonth'),
+    document.getElementById('nextResultMonth')
+  );
+}, { passive: true });

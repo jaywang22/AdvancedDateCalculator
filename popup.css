@@ -406,7 +406,7 @@ input[type="number"]:focus {
 #addBtn {
   width: 56px;
   height: 30px;
-  padding: 7px;
+  padding: 0;
   background-color: #e5e7eb;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -415,6 +415,10 @@ input[type="number"]:focus {
   transition: all 0.2s ease;
   flex-shrink: 0;
   margin: -7px 0 2px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 #addBtn:hover:not(:disabled) {
@@ -891,6 +895,11 @@ input[type="number"]:focus {
     width: 60px;
     min-height: 44px;
     font-size: 18px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
 
   /* Calendar header buttons */
@@ -1003,5 +1012,176 @@ input[type="number"]:focus {
 
   #result strong {
     font-size: 16px;
+  }
+}
+
+/* ===== Landscape Orientation (Mobile) ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+  body {
+    padding: 8px;
+  }
+
+  h2 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  /* Two-column layout in landscape */
+  #mainContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  /* Controls span both columns and go at bottom */
+  #controlsContainer {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
+
+  /* Compact calendars */
+  .calendarSection {
+    padding: 6px;
+  }
+
+  .calendarLabel {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  #calendarDays div, #resultCalendarDays div {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 12px;
+  }
+
+  .calendarWeekdays div {
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .calendarHeader button {
+    min-width: 28px;
+    max-width: 28px;
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .monthYearSelectors select {
+    padding: 6px 4px;
+    font-size: 12px;
+  }
+
+  #monthSelect,
+  #resultMonthSelect {
+    width: 85px;
+  }
+
+  #yearSelect,
+  #resultYearSelect {
+    width: 55px;
+  }
+
+  /* Compact presets grid */
+  .grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .grid button {
+    padding: 8px 4px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  /* Compact unit buttons */
+  .unit-grid button {
+    padding: 8px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  /* Compact input */
+  input[type="number"] {
+    padding: 8px;
+    font-size: 14px;
+    min-height: 36px;
+  }
+
+  #addBtn {
+    width: 50px;
+    min-height: 36px;
+    font-size: 16px;
+  }
+
+  /* Compact result */
+  #result {
+    font-size: 12px;
+    padding: 8px;
+    margin: 6px 0 4px 0;
+  }
+
+  #result strong {
+    font-size: 14px;
+  }
+
+  #result .breakdown {
+    font-size: 13px;
+  }
+
+  /* Compact action buttons */
+  #copyBtn, #clearBtn {
+    padding: 6px 10px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  #todayButton {
+    padding: 6px 8px;
+    font-size: 11px;
+    min-height: 36px;
+    margin-top: 6px;
+  }
+
+  /* Compact help button */
+  #helpBtn {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  /* Compact toggles */
+  .months-toggle {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  .months-toggle input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Tablet landscape - 3 columns side by side */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  body {
+    min-width: 100%;
+    padding: 12px;
+  }
+
+  #mainContainer {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    max-width: 100%;
+  }
+
+  .calendarSection {
+    max-width: 100%;
+  }
+
+  #controlsContainer {
+    max-width: 100%;
   }
 }
