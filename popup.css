@@ -405,8 +405,8 @@ input[type="number"]:focus {
 
 #addBtn {
   width: 56px;
-  height: 30px;
-  padding: 0;
+  height: auto;
+  padding: 7px;
   background-color: #e5e7eb;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -849,39 +849,86 @@ input[type="number"]:focus {
     margin-bottom: 8px;
   }
 
-  /* Stack calendars and controls vertically */
+  /* Two calendars side-by-side at top, controls at bottom */
   #mainContainer {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
     max-width: 100%;
   }
 
-  /* Make calendars full width */
+  /* Calendars stay in first row */
+  #calendarContainer {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  #resultCalendarContainer {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* Controls span full width in second row */
+  #controlsContainer {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* Compact calendars for side-by-side */
   .calendarSection {
     width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
+    padding: 6px;
   }
 
-  /* Controls container */
-  #controlsContainer {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  /* Larger touch targets */
-  .grid button, .unit-grid button, #copyBtn, #clearBtn, #addBtn {
-    padding: 12px;
-    font-size: 14px;
-    min-height: 44px;
+  .calendarLabel {
+    font-size: 12px;
+    margin-bottom: 4px;
   }
 
   #calendarDays div, #resultCalendarDays div {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    font-size: 13px;
+    gap: 2px;
+  }
+
+  .calendarWeekdays div {
+    font-size: 10px;
+    line-height: 18px;
+  }
+
+  .calendarHeader button {
+    min-width: 28px;
+    max-width: 28px;
+    padding: 6px 4px;
     font-size: 14px;
+  }
+
+  .monthYearSelectors select {
+    padding: 6px 3px;
+    font-size: 11px;
+  }
+
+  #monthSelect,
+  #resultMonthSelect {
+    width: 80px;
+  }
+
+  #yearSelect,
+  #resultYearSelect {
+    width: 52px;
+  }
+
+  /* Larger touch targets for controls */
+  .grid button, .unit-grid button, #copyBtn, #clearBtn {
+    padding: 12px;
+    font-size: 14px;
+    min-height: 44px;
   }
 
   /* Larger input field */
@@ -900,19 +947,6 @@ input[type="number"]:focus {
     align-items: center;
     justify-content: center;
     line-height: 1;
-  }
-
-  /* Calendar header buttons */
-  .calendarHeader button {
-    min-width: 32px;
-    max-width: 32px;
-    padding: 8px;
-    font-size: 16px;
-  }
-
-  .monthYearSelectors select {
-    padding: 8px 4px;
-    font-size: 14px;
   }
 
   /* Result area */
@@ -953,9 +987,10 @@ input[type="number"]:focus {
 
   /* Today button */
   #todayButton {
-    padding: 10px 12px;
-    font-size: 14px;
-    min-height: 44px;
+    padding: 8px 10px;
+    font-size: 12px;
+    min-height: 40px;
+    margin-top: 6px;
   }
 
   /* Tooltips - hide on mobile */
@@ -984,6 +1019,54 @@ input[type="number"]:focus {
     font-size: 16px;
   }
 
+  /* Even more compact calendars */
+  .calendarSection {
+    padding: 4px;
+  }
+
+  .calendarLabel {
+    font-size: 11px;
+  }
+
+  #calendarDays div, #resultCalendarDays div {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+  }
+
+  .calendarWeekdays div {
+    font-size: 9px;
+  }
+
+  .calendarHeader button {
+    min-width: 24px;
+    max-width: 24px;
+    padding: 4px 2px;
+    font-size: 12px;
+  }
+
+  .monthYearSelectors select {
+    padding: 4px 2px;
+    font-size: 10px;
+  }
+
+  #monthSelect,
+  #resultMonthSelect {
+    width: 70px;
+  }
+
+  #yearSelect,
+  #resultYearSelect {
+    width: 48px;
+  }
+
+  #todayButton {
+    font-size: 10px;
+    padding: 6px 8px;
+  }
+
+  /* Controls */
   .grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 4px;
@@ -992,17 +1075,6 @@ input[type="number"]:focus {
   .grid button {
     padding: 10px 4px;
     font-size: 13px;
-  }
-
-  #calendarDays div, #resultCalendarDays div {
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    font-size: 13px;
-  }
-
-  .calendarSection {
-    padding: 6px;
   }
 
   #result {
@@ -1019,6 +1091,7 @@ input[type="number"]:focus {
 @media (max-width: 768px) and (orientation: landscape) {
   body {
     padding: 8px;
+    min-width: 100%;
   }
 
   h2 {
@@ -1026,22 +1099,21 @@ input[type="number"]:focus {
     margin-bottom: 6px;
   }
 
-  /* Two-column layout in landscape */
+  /* Three-column layout in landscape - like desktop */
   #mainContainer {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    max-width: 100%;
-  }
-
-  /* Controls span both columns and go at bottom */
-  #controlsContainer {
-    grid-column: 1 / -1;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
     max-width: 100%;
   }
 
   /* Compact calendars */
   .calendarSection {
     padding: 6px;
+    width: 100%;
+  }
+
+  #controlsContainer {
+    width: 100%;
   }
 
   .calendarLabel {
