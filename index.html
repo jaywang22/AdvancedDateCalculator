@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate dates forward or backward from any day or find time between dates with an intuitive, easy to use interface.">
+  <meta name="theme-color" content="#4285f4">
+  <title>Advanced Date Calculator</title>
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="16x16" href="Calendar_Icon_16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="Calendar_Icon_48.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="Calendar_Icon.png">
+  <link rel="apple-touch-icon" href="Calendar_Icon.png">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div style="position: relative; margin-bottom: 12px;">
+    <h2 style="margin-bottom: 0;">Advanced Date Calculator</h2>
+    <button id="helpBtn" title="How to use">?</button>
+  </div>
+
+  <div id="helpModal" class="help-modal">
+    <div class="help-content">
+      <button id="closeHelp">&times;</button>
+      <h3>How to Use</h3>
+      <ul>
+        <li>Select the starting date on the left calendar. Today is selected by default.</li>
+        <li>Enter a number of days/weeks/months/years and before/after to calculate the resulting date.</li>
+        <li>Use the + button to enter additional days/weeks/months/years to the calcuation.</li>
+        <li>Dates on both calendars can be selected to calculate the time between them.</li>
+      </ul>
+      <h4>Keyboard Shortcuts</h4>
+      <ul>
+        <li><strong>T</strong> - Select Today</li>
+        <li><strong>C</strong> - Copy Result</li>
+        <li><strong>R</strong> - Reset</li>
+        <li><strong>?</strong> - Show Help</li>
+        <li><strong>↑/↓</strong> - Increase/Decrease Number</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="mainContainer">
+
+    <!-- LEFT COLUMN – STARTING DATE CALENDAR -->
+    <div id="calendarContainer">
+      <div class="calendarSection">
+        <div class="calendarLabel"><strong>Starting Date</strong></div>
+        <div id="startingCalendarTooltip" class="calendar-Tooltip">Select Starting Date</div>
+
+        <div class="calendarHeader">
+          <button id="prevMonth" aria-label="Previous month">&lt;</button>
+          <div class="monthYearSelectors">
+            <select id="monthSelect" aria-label="Select month"></select>
+            <select id="yearSelect" aria-label="Select year"></select>
+          </div>
+          <button id="nextMonth" aria-label="Next month">&gt;</button>
+        </div>
+
+        <div class="calendarWeekdays">
+          <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div>
+          <div>Thu</div><div>Fri</div><div>Sat</div>
+        </div>
+
+        <div id="calendarDays"></div>
+
+        <button id="todayButton">Select Today (T)</button>
+      </div>
+    </div>
+
+    <!-- MIDDLE COLUMN – PRESETS, INPUT, UNITS, RESULT, COPY BUTTON -->
+    <div id="controlsContainer">
+
+      <!-- Preset buttons inserted by JS -->
+      <div id="presetGrid" class="grid"></div>
+        <div style="display: flex; gap: 5px; align-items: center;">
+          <input type="number" id="amountInput" placeholder="Enter number" min="0" max="9999" step="1" aria-label="Amount">
+          <button id="addBtn" disabled title="Add another time period">+</button>
+        </div>
+        
+      <div id="unitButtons" class="unit-grid">
+        <button data-unit="days">Days</button>
+        <button data-unit="weeks" class="selected">Weeks</button>
+        <button data-unit="months">Months</button>
+        <button data-unit="years">Years</button>
+      </div>
+
+      <div id="directionButtons" class="unit-grid">
+        <button data-direction="before">Before</button>
+        <button data-direction="after" class="selected">After</button>
+      </div>
+
+      <p id="result"></p>
+      <div style="display: flex; gap: 8px; justify-content: center;">
+        <button id="copyBtn">Copy Result (C)</button>
+        <button id="clearBtn">Reset (R)</button>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN – RESULTING DATE CALENDAR -->
+    <div id="resultCalendarContainer">
+      <div class="calendarSection">
+        <div class="calendarLabel"><strong>Resulting Date</strong></div>
+        <div id="resultCalendarTooltip" class="calendar-Tooltip">Select Ending Date</div>
+
+        <div class="calendarHeader">
+          <button id="prevResultMonth" aria-label="Previous month">&lt;</button>
+          <div class="monthYearSelectors">
+            <select id="resultMonthSelect" aria-label="Select month"></select>
+            <select id="resultYearSelect" aria-label="Select year"></select>
+          </div>
+          <button id="nextResultMonth" aria-label="Next month">&gt;</button>
+        </div>
+
+        <div class="calendarWeekdays">
+          <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div>
+          <div>Thu</div><div>Fri</div><div>Sat</div>
+        </div>
+
+        <div id="resultCalendarDays"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script src="popup.js"></script>
+  
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(registration => {
+            console.log('ServiceWorker registered:', registration.scope);
+          })
+          .catch(err => {
+            console.log('ServiceWorker registration failed:', err);
+          });
+      });
+    }
+  </script>
+</body>
+</html>

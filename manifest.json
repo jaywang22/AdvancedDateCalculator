@@ -1,0 +1,32 @@
+{
+  "name": "Advanced Date Calculator",
+  "short_name": "DateCalc",
+  "description": "Calculate dates forward or backward from any day or find time between dates with an intuitive, easy to use interface.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4285f4",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "Calendar_Icon.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "Calendar_Icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "Calendar_Icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "screenshots": []
+}
