@@ -831,3 +831,177 @@ input[type="number"]:focus {
     background-color: rgba(0, 0, 0, 0.7);
   }
 }
+
+/* ===== Mobile Optimizations ===== */
+@media (max-width: 768px) {
+  body {
+    min-width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  /* Stack calendars and controls vertically */
+  #mainContainer {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    max-width: 100%;
+  }
+
+  /* Make calendars full width */
+  .calendarSection {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* Controls container */
+  #controlsContainer {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* Larger touch targets */
+  .grid button, .unit-grid button, #copyBtn, #clearBtn, #addBtn {
+    padding: 12px;
+    font-size: 14px;
+    min-height: 44px;
+  }
+
+  #calendarDays div, #resultCalendarDays div {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+  }
+
+  /* Larger input field */
+  input[type="number"] {
+    padding: 12px;
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  #addBtn {
+    width: 60px;
+    min-height: 44px;
+    font-size: 18px;
+  }
+
+  /* Calendar header buttons */
+  .calendarHeader button {
+    min-width: 32px;
+    max-width: 32px;
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  .monthYearSelectors select {
+    padding: 8px 4px;
+    font-size: 14px;
+  }
+
+  /* Result area */
+  #result {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  #result strong {
+    font-size: 17px;
+  }
+
+  #result .breakdown {
+    font-size: 15px;
+  }
+
+  /* Help button */
+  #helpBtn {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+
+  /* Help modal */
+  .help-content {
+    margin: 20px;
+    padding: 20px;
+    max-width: calc(100vw - 40px);
+  }
+
+  .help-content h3 {
+    font-size: 18px;
+  }
+
+  .help-content li {
+    font-size: 14px;
+  }
+
+  /* Today button */
+  #todayButton {
+    padding: 10px 12px;
+    font-size: 14px;
+    min-height: 44px;
+  }
+
+  /* Tooltips - hide on mobile */
+  .calendar-Tooltip {
+    display: none;
+  }
+
+  /* Toggle checkboxes */
+  .months-toggle {
+    font-size: 13px;
+  }
+
+  .months-toggle input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 375px) {
+  body {
+    padding: 8px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+  }
+
+  .grid button {
+    padding: 10px 4px;
+    font-size: 13px;
+  }
+
+  #calendarDays div, #resultCalendarDays div {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 13px;
+  }
+
+  .calendarSection {
+    padding: 6px;
+  }
+
+  #result {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  #result strong {
+    font-size: 16px;
+  }
+}
