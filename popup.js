@@ -1176,3 +1176,35 @@ document.getElementById('resultCalendarDays').addEventListener('touchend', e => 
     document.getElementById('nextResultMonth')
   );
 }, { passive: true });
+
+// --- Prevent zoom on orientation change (iOS fix) ---
+let viewportMeta = document.querySelector('meta[name="viewport"]');
+
+function resetViewport() {
+  // Force viewport reset on orientation change
+  if (viewportMeta) {
+    viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+  }
+  
+  // Scroll to top to reset any offset
+  window.scrollTo(0, 0);
+}
+
+// Listen for orientation changes
+window.addEventListener('orientationchange', () => {
+  // Small delay to ensure orientation has changed
+  setTimeout(resetViewport, 100);
+});
+
+// Also reset on page load
+window.addEventListener('load', resetViewport);
+
+// Prevent double-tap zoom on iOS
+let lastTouchEnd = 0;
+document.addEventListener('touchend', (e) => {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) {
+    e.preventDefault();
+  }
+  lastTouchEnd = now;
+}, { passive: false });
