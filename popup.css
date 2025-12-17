@@ -1,3 +1,30 @@
+/* ===== Prevent Horizontal Scroll - Global ===== */
+html {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#mainContainer,
+.calendarSection,
+#controlsContainer,
+#calendarContainer,
+#resultCalendarContainer {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* ===== Base Layout ===== */
 body {
   min-width: 755px;
@@ -867,21 +894,15 @@ input[type="number"]:focus {
 
 /* ===== Mobile Optimizations ===== */
 @media (max-width: 768px) {
-  html, body {
-    overflow-x: hidden;
-    max-width: 100vw;
-    width: 100%;
-  }
-
   body {
     min-width: 100%;
-    padding: 4px;  /* Reduced from 8px */
+    padding: 3px;  /* Reduced from 4px */
     font-size: 14px;
   }
 
   h2 {
-    font-size: 16px;  /* Reduced from 18px */
-    margin-bottom: 6px;
+    font-size: 16px;
+    margin-bottom: 4px;
   }
 
   /* Two calendars side-by-side at top, controls at bottom */
@@ -889,28 +910,31 @@ input[type="number"]:focus {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
-    gap: 4px;  /* Reduced from 6px */
+    gap: 3px;  /* Reduced from 4px */
     max-width: 100%;
     width: 100%;
-    overflow-x: hidden;
   }
 
   /* Calendars stay in first row */
   #calendarContainer {
     grid-column: 1;
     grid-row: 1;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   #resultCalendarContainer {
     grid-column: 2;
     grid-row: 1;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   /* Controls span full width in second row */
   #controlsContainer {
     grid-column: 1 / -1;
     grid-row: 2;
-    width: 100%;
+    width: calc(100% - 6px);  /* Account for body padding */
     max-width: 400px;
     margin: 0 auto;
   }
@@ -919,52 +943,60 @@ input[type="number"]:focus {
   .calendarSection {
     width: 100%;
     max-width: 100%;
-    padding: 2px;  /* Reduced from 3px */
+    padding: 2px;
     overflow: hidden;
-    box-sizing: border-box;
   }
 
   .calendarLabel {
-    font-size: 10px;
-    margin-bottom: 2px;
+    font-size: 9px;
+    margin-bottom: 1px;
   }
 
   #calendarDays div, #resultCalendarDays div {
-    width: 22px;  /* Reduced from 24px */
-    height: 22px;
-    line-height: 22px;
-    font-size: 9px;  /* Reduced from 10px */
+    width: 20px;  /* Reduced from 22px */
+    height: 20px;
+    line-height: 20px;
+    font-size: 9px;
   }
 
   #calendarDays, #resultCalendarDays {
     gap: 1px;
+    max-width: 100%;
   }
 
   .calendarWeekdays div {
-    font-size: 8px;
-    line-height: 14px;
+    font-size: 7px;
+    line-height: 12px;
+  }
+
+  .calendarHeader {
+    gap: 2px;
   }
 
   .calendarHeader button {
-    min-width: 20px;  /* Reduced from 22px */
-    max-width: 20px;
+    min-width: 18px;  /* Reduced from 20px */
+    max-width: 18px;
     padding: 2px 1px;
     font-size: 10px;
   }
 
+  .monthYearSelectors {
+    gap: 2px;
+  }
+
   .monthYearSelectors select {
     padding: 2px 1px;
-    font-size: 9px;
+    font-size: 8px;
   }
 
   #monthSelect,
   #resultMonthSelect {
-    width: 60px;  /* Reduced from 65px */
+    width: 56px;  /* Reduced from 60px */
   }
 
   #yearSelect,
   #resultYearSelect {
-    width: 38px;  /* Reduced from 42px */
+    width: 36px;  /* Reduced from 38px */
   }
 
   /* Larger touch targets for controls */
@@ -1008,9 +1040,9 @@ input[type="number"]:focus {
 
   /* Help button */
   #helpBtn {
-    width: 26px;  /* Reduced from 28px */
-    height: 26px;
-    font-size: 15px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
   }
 
   /* Help modal */
@@ -1030,9 +1062,9 @@ input[type="number"]:focus {
 
   /* Today button */
   #todayButton {
-    padding: 4px 6px;
-    font-size: 9px;
-    min-height: 30px;
+    padding: 4px 5px;
+    font-size: 8px;
+    min-height: 28px;
     margin-top: 2px;
   }
 
@@ -1055,13 +1087,14 @@ input[type="number"]:focus {
 /* ===== Landscape Orientation (Mobile) - 3 COLUMNS ===== */
 @media (max-width: 768px) and (orientation: landscape) {
   body {
-    padding: 6px;
+    padding: 3px;  /* Reduced from 6px */
     min-width: 100%;
+    overflow-x: hidden;
   }
 
   h2 {
-    font-size: 14px;
-    margin-bottom: 4px;
+    font-size: 13px;
+    margin-bottom: 3px;
   }
 
   /* Three-column layout in landscape - original desktop style */
@@ -1069,152 +1102,170 @@ input[type="number"]:focus {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    gap: 6px;
+    gap: 3px;  /* Reduced from 6px */
     max-width: 100%;
+    width: 100%;
   }
 
   /* Reset grid positioning */
   #calendarContainer {
     grid-column: 1;
     grid-row: 1;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   #controlsContainer {
     grid-column: 2;
     grid-row: 1;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   #resultCalendarContainer {
     grid-column: 3;
     grid-row: 1;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   /* Compact calendars */
   .calendarSection {
-    padding: 4px;
+    padding: 2px;  /* Reduced from 4px */
     width: 100%;
-  }
-
-  #controlsContainer {
-    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .calendarLabel {
-    font-size: 11px;
-    margin-bottom: 3px;
+    font-size: 10px;
+    margin-bottom: 2px;
   }
 
   #calendarDays div, #resultCalendarDays div {
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
-    font-size: 11px;
+    width: 24px;  /* Reduced from 28px */
+    height: 24px;
+    line-height: 24px;
+    font-size: 10px;
+  }
+
+  #calendarDays, #resultCalendarDays {
+    gap: 1px;
   }
 
   .calendarWeekdays div {
-    font-size: 9px;
-    line-height: 14px;
+    font-size: 8px;
+    line-height: 12px;
+  }
+
+  .calendarHeader {
+    gap: 2px;
   }
 
   .calendarHeader button {
-    min-width: 24px;
-    max-width: 24px;
-    padding: 4px 2px;
-    font-size: 12px;
+    min-width: 20px;  /* Reduced from 24px */
+    max-width: 20px;
+    padding: 3px 1px;
+    font-size: 11px;
+  }
+
+  .monthYearSelectors {
+    gap: 2px;
   }
 
   .monthYearSelectors select {
-    padding: 4px 2px;
-    font-size: 10px;
+    padding: 3px 1px;
+    font-size: 9px;
   }
 
   #monthSelect,
   #resultMonthSelect {
-    width: 70px;
+    width: 62px;  /* Reduced from 70px */
   }
 
   #yearSelect,
   #resultYearSelect {
-    width: 45px;
+    width: 40px;  /* Reduced from 45px */
   }
 
   /* Keep presets as 4 columns in landscape */
   .grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 3px;
-    margin-bottom: 4px;
+    gap: 2px;  /* Reduced from 3px */
+    margin-bottom: 3px;
   }
 
   .grid button {
-    padding: 6px 3px;
-    font-size: 11px;
-    min-height: 32px;
+    padding: 5px 2px;
+    font-size: 10px;
+    min-height: 30px;
   }
 
   /* Compact unit buttons */
   .unit-grid button {
-    padding: 6px;
-    font-size: 11px;
-    min-height: 32px;
+    padding: 5px;
+    font-size: 10px;
+    min-height: 30px;
   }
 
   /* Compact input */
   input[type="number"] {
-    padding: 6px;
-    font-size: 12px;
-    min-height: 32px;
+    padding: 5px;
+    font-size: 11px;
+    min-height: 30px;
   }
 
   #addBtn {
-    width: calc(25% - 2.25px);
-    min-height: 32px;
-    font-size: 14px;
+    width: calc(25% - 1.5px);
+    min-height: 30px;
+    font-size: 13px;
   }
 
   /* Compact result */
   #result {
-    font-size: 11px;
-    padding: 6px;
-    margin: 4px 0 3px 0;
+    font-size: 10px;
+    padding: 5px;
+    margin: 3px 0 2px 0;
   }
 
   #result strong {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   #result .breakdown {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   /* Compact action buttons */
   #copyBtn, #clearBtn {
-    padding: 5px 8px;
-    font-size: 11px;
-    min-height: 32px;
+    padding: 4px 6px;
+    font-size: 10px;
+    min-height: 30px;
   }
 
   #todayButton {
-    padding: 5px 6px;
-    font-size: 10px;
-    min-height: 32px;
-    margin-top: 4px;
+    padding: 4px 5px;
+    font-size: 9px;
+    min-height: 28px;
+    margin-top: 3px;
   }
 
   /* Compact help button */
   #helpBtn {
-    width: 22px;
-    height: 22px;
-    font-size: 13px;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
   }
 
   /* Compact toggles */
   .months-toggle {
-    font-size: 10px;
-    margin-top: 3px;
+    font-size: 9px;
+    margin-top: 2px;
   }
 
   .months-toggle input[type="checkbox"] {
-    width: 12px;
-    height: 12px;
+    width: 11px;
+    height: 11px;
   }
 }
