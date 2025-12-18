@@ -422,7 +422,7 @@ function calculateAndDisplay(amount) {
 
   if (copyPressed) {
     const copyBtn = document.getElementById("copyBtn");
-    copyBtn.textContent = "Copy Result (C)", "Copy Result";
+    copyBtn.textContent = "Copy Result (C)";
     copyPressed = false;
   }
   
@@ -550,7 +550,7 @@ function calculateCompoundOnly() {
 
   if (copyPressed) {
     const copyBtn = document.getElementById("copyBtn");
-    copyBtn.textContent = "Copy Result (C)", "Copy Result";
+    copyBtn.textContent = "Copy Result (C)";
     copyPressed = false;
   }
   
@@ -935,11 +935,7 @@ addBtn.addEventListener("click", () => {
 
 // --- Copy result ---
 const copyBtn = document.getElementById("copyBtn");
-const clearBtn = document.getElementById("clearBtn");
 
-// Set initial button text for mobile
-copyBtn.textContent = getButtonText("Copy Result (C)", "Copy Result");
-clearBtn.textContent = getButtonText("Reset (R)", "Reset");
 // In the copy button handler, update to:
 copyBtn.addEventListener("click", async () => {
   const resultElement = document.getElementById("result");
@@ -949,7 +945,7 @@ copyBtn.addEventListener("click", async () => {
   if (!textToCopy) {
     copyBtn.textContent = "Nothing to copy";
     setTimeout(() => {
-      copyBtn.textContent = "Copy Result (C)", "Copy Result";
+      copyBtn.textContent = "Copy Result (C)";
     }, 1500);
     return;
   }
@@ -958,14 +954,14 @@ copyBtn.addEventListener("click", async () => {
     await navigator.clipboard.writeText(textToCopy);
     copyBtn.textContent = "✓ Copied!";
     setTimeout(() => {
-      copyBtn.textContent = "Copy Result (C)", "Copy Result";
+      copyBtn.textContent = "Copy Result (C)";
       copyPressed = false;
     }, 2000);
   } catch (err) {
     console.error('Failed to copy: ', err);
     copyBtn.textContent = "Copy failed";
     setTimeout(() => {
-      copyBtn.textContent = "Copy Result (C)", "Copy Result";
+      copyBtn.textContent = "Copy Result (C)";
     }, 2000);
   }
 });
@@ -1016,7 +1012,7 @@ clearBtn.addEventListener("click", () => {
   renderCalendarForDate(currentResultDate, resultMonthSelect, resultYearSelect, resultCalendarDays, false);
   
   // Reset copy button
-  copyBtn.textContent = "Copy Result (C)", "Copy Result";
+  copyBtn.textContent = "Copy Result (C)";
   copyPressed = false;
 
   useWeekdaysOnly = false;
