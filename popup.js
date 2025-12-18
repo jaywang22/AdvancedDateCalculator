@@ -234,7 +234,7 @@ function updateTodayButton() {
     todayButton.textContent = "Today Selected";
   } else {
     todayButton.classList.remove("selected");
-    todayButton.textContent = "Select Today (T)", "Select Today";
+    todayButton.textContent = "Select Today (T)";
   }
 }
 todayButton.addEventListener("click", () => {
