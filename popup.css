@@ -1060,6 +1060,15 @@ input[type="number"]:focus {
     font-size: 14px;
   }
 
+  /* Hide keyboard shortcuts section on mobile */
+  .help-content h4 {
+    display: none;
+  }
+
+  .help-content h4 + ul {
+    display: none;
+  }
+
   /* Today button */
   #todayButton {
     padding: 4px 5px;
