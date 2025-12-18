@@ -1,13 +1,3 @@
-// Detect if device is mobile
-function isMobileDevice() {
-  return window.innerWidth <= 768;
-}
-
-// Get button text without keyboard shortcuts for mobile
-function getButtonText(desktopText, mobileText) {
-  return isMobileDevice() ? mobileText : desktopText;
-}
-
 let selectedUnit = "weeks";
 let selectedDirection = "after";
 let lastAmount = null;
