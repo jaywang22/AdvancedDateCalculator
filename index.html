@@ -78,7 +78,7 @@
       <!-- Preset buttons inserted by JS -->
       <div id="presetGrid" class="grid"></div>
         <div style="display: flex; gap: 5px; align-items: center;">
-          <input type="number" id="amountInput" placeholder="Enter number" min="0" max="9999" step="1" aria-label="Amount">
+          <input type="number" id="amountInput" inputmode="numeric" pattern="[0-9]*" placeholder="Enter number" min="0" max="9999" step="1" aria-label="Amount">
           <button id="addBtn" disabled title="Add another time period">+</button>
         </div>
         
